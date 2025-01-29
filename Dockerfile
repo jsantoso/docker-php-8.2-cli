@@ -6,8 +6,7 @@ LABEL maintainer="Jeffrey Santoso <jeffrey.k.santoso@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
 
-RUN apt-get update
-RUN apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y \
         apt-utils \
         vim \
@@ -35,13 +34,15 @@ RUN apt-get install -y \
         lftp \
         poppler-utils \
         zip \
+        p7zip-full \
         pdftk \
         expect \
         mkisofs \
         dcmtk \
         libmagickwand-dev \
         unixodbc \
-        unixodbc-dev
+        unixodbc-dev \
+        && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 RUN echo alias ll=\'ls -lF\' >> /root/.bashrc
 
